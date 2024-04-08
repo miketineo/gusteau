@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for gusteau on 2024-04-08T11:00:58+02:00
+# fly.toml app configuration file generated for gusteau-dry-hill-3600 on 2024-04-08T15:11:55+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'gusteau'
-primary_region = 'ams'
+app = 'gusteau-dry-hill-3600'
+primary_region = 'cdg'
 console_command = '/rails/bin/rails console'
 
 [build]
@@ -43,3 +43,15 @@ console_command = '/rails/bin/rails console'
 [[statics]]
   guest_path = '/rails/public'
   url_prefix = '/'
+
+  [processes]
+  app = """--datadir /data/mysql \
+    --default-authentication-plugin mysql_native_password"""
+
+[mounts]
+  source = "mysqldata"
+  destination = "/data"
+
+[env]
+  MYSQL_DATABASE = "gusteau_development"
+  MYSQL_USER = "gusteau"

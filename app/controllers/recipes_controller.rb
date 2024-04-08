@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.all
-    render json: @recipes.to_json(include: :ingredients)
+    @recipes = Recipe.all.limit(100)
+    render json: @recipes.to_json
   end
 
   def show
@@ -19,6 +19,11 @@ class RecipesController < ApplicationController
 
   def search
     @recipe = Recipe.with_some(params[:q].split(","))
+    render json: @recipe.to_json(include: :ingredients)
+  end
+
+  def with
+    @recipe = Recipe.search_for(params[:q].to_s)
     render json: @recipe.to_json(include: :ingredients)
   end
 
