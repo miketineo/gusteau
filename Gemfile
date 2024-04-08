@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.3.0"
 
+gem 'dotenv', groups: [:development, :test]
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
@@ -10,6 +12,8 @@ gem "mysql2", "~> 0.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
+
+gem 'rack-cors'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -45,3 +49,6 @@ group :development do
   # gem "spring"
 end
 
+gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "pg", "~> 1.5"
